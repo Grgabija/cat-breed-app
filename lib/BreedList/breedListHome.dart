@@ -25,28 +25,27 @@ class _BreedListHomeState extends State<BreedListHome> {
             Card(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    Row(
-                      children: <Widget>[
-                        Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 8, 8, 8),
-                            child: Icon(Icons.account_circle, size: 96)),
-                        Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                  'Breed Name',
-                                  style: Theme.of(context).textTheme.headline5),
-                              Text(
-                                'Big ass description. Big ass description.Big ass description.Big ass description.Big ass description.Big ass description.Big ass description. Big ass description.Big ass description.Big ass description.Big ass description.Big ass description.Big ass description.Big ass description. Big ass description. Big ass description. Big ass description. Big ass description.',
-                              ),
-                            ],
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                        padding: const EdgeInsets.only(
+                            left: 0, top: 8, right: 8, bottom: 8),
+                        child: Icon(Icons.account_circle, size: 96)),
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('Breed Name',
+                              style: Theme.of(context).textTheme.headline5),
+                          Text(
+                            'Big ass description.',
                           ),
-                        ),
-                      ],
+                          Text(
+                            'Big ass description. Big ass description.Big ass description.Big ass description.Big ass description.Big ass description.Big ass description. Big ass description.Big ass description.Big ass description.Big ass description.Big ass description.Big ass description.Big ass description. Big ass description. Big ass description. Big ass description. Big ass description.',
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

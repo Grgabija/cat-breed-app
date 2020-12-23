@@ -1,5 +1,5 @@
-import 'package:cat_breed_app/Utils/Network/Content/breedsList.dart';
+import 'package:cat_breed_app/Utils/Network/Content/breedResponse.dart';
 
 abstract class Breeds {
-  Future<List<BreedsList>> getBreedsList();
+  Future<List<BreedResponse>> getBreedsList();
 }
