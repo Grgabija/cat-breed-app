@@ -16,11 +16,11 @@ class _BreedListHomeState extends State<BreedListHome> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      appBar: AppBar(
-        title: Text(Strings.mainScreenTitle),
-      ),
-      body: _buildListView(),
-    );
+        appBar: AppBar(
+          title: Text(Strings.mainScreenTitle),
+        ),
+        body: _buildListView(),
+      );
 
   Widget _buildListView() => Column(
           mainAxisSize: MainAxisSize.min,
@@ -51,34 +51,44 @@ class _BreedListHomeState extends State<BreedListHome> {
           ]);
 
   Widget _buildCardView(BreedResponse breed) => Card(
-    child: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Row(
-        children: <Widget>[
-          Padding(
-              padding: const EdgeInsets.only(
-                  left: 0, top: 8, right: 8, bottom: 8),
-              child: Icon(Icons.account_circle, size: 96)),
-          Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('${breed.name}',
-                    style: Theme.of(context).textTheme.headline5),
-                Text(
-                  '${breed.description}',
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            children: <Widget>[
+              Padding(
+                  padding: const EdgeInsets.only(
+                      left: 0, top: 8, right: 8, bottom: 8),
+                  child: breed.image != null
+                      ? Image.network(
+                          '${breed.image.url}',
+                          width: 150,
+                          errorBuilder: (BuildContext context, Object exception,
+                              StackTrace stackTrace) {
+                            return Image.asset('Assets/imagePlaceholder.jpg',
+                                width: 150);
+                          },
+                        )
+                      : Image.asset('Assets/imagePlaceholder.jpg', width: 150)),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text('${breed.name}',
+                        style: Theme.of(context).textTheme.headline5),
+                    Text(
+                      '${breed.description}',
+                    ),
+                    Text('Breed temperament:',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text(
+                      '${breed.temperament}',
+                    ),
+                  ],
                 ),
-                 Text('Breed temperament:',
-                     style: TextStyle(fontWeight: FontWeight.bold)),
-                Text(
-                  '${breed.temperament}',
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
-    ),
-  );
+        ),
+      );
 }
