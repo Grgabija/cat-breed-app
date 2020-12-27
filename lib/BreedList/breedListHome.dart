@@ -31,7 +31,10 @@ class _BreedListHomeState extends State<BreedListHome> {
                   future: _breeds.getBreedsList(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator();
+                      return Container(
+                          width: 50,
+                          height: 50,
+                          child: Center(child: CircularProgressIndicator()));
                     } else if (snapshot.hasError) {
                       return Text(
                           ApiExceptionMapper.toErrorMessage(snapshot.error));
@@ -56,8 +59,7 @@ class _BreedListHomeState extends State<BreedListHome> {
           child: Row(
             children: <Widget>[
               Padding(
-                  padding: const EdgeInsets.only(
-                      left: 0, top: 8, right: 8, bottom: 8),
+                  padding: const EdgeInsets.only(top: 8, right: 8, bottom: 8),
                   child: breed.image != null
                       ? Image.network(
                           '${breed.image.url}',
@@ -76,11 +78,14 @@ class _BreedListHomeState extends State<BreedListHome> {
                   children: [
                     Text('${breed.name}',
                         style: Theme.of(context).textTheme.headline5),
+                    Padding(padding: const EdgeInsets.only(top: 4)),
                     Text(
                       '${breed.description}',
                     ),
-                    Text('Breed temperament:',
+                    Padding(padding: const EdgeInsets.only(top: 4)),
+                    Text(Strings.temperamentTitle,
                         style: TextStyle(fontWeight: FontWeight.bold)),
+                    Padding(padding: const EdgeInsets.only(top: 2)),
                     Text(
                       '${breed.temperament}',
                     ),

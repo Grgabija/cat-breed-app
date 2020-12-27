@@ -1,7 +1,8 @@
 class Strings {
-
   static const mainScreenTitle = 'The Biggest Baddest Cat Breed list';
   static const appTitle = 'Cat Breeds';
+
+  static const temperamentTitle = 'Breed temperament:';
 
   static const connectionError = "No internet connection";
   static const clientError = "Resource not found";
