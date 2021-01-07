@@ -14,9 +14,8 @@ class HttpClient {
     return _instance;
   }
 
-  Future<dynamic> getRequest(String path) async {
+  Future<dynamic> getRequest(String path, Map<String, String> headers) async {
     Response response;
-
     try {
       response = await get(path);
       final statusCode = response.statusCode;

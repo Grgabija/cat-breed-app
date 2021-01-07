@@ -9,6 +9,9 @@ class BreedResponse {
   @JsonKey(name: 'name')
   final String name;
 
+  @JsonKey(name: 'id')
+  final String id;
+
   @JsonKey(name: 'description')
   final String description;
 
@@ -18,7 +21,7 @@ class BreedResponse {
   @JsonKey(name: 'image')
   final Image image;
 
-  BreedResponse(this.name, this.description, this.temperament, this.image);
+  BreedResponse(this.name, this.id, this.description, this.temperament, this.image);
 
   factory BreedResponse.fromJson(Map<String, dynamic> json) =>
       _$BreedResponseFromJson(json);

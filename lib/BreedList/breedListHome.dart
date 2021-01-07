@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
 
 import 'package:cat_breed_app/Utils/Localization/strings.dart';
 import 'package:cat_breed_app/Utils/Network/Content/theCatApi.dart';
 import 'package:cat_breed_app/Utils/Network/Content/breedsRepository.dart';
 import 'package:cat_breed_app/Utils/Network/Content/breedResponse.dart';
 import 'package:cat_breed_app/Utils/Network/Exceptions/apiExceptionMapper.dart';
+import 'package:cat_breed_app/BreedGallery/breedGallery.dart';
 
 class BreedListHome extends StatefulWidget {
   @override
@@ -60,17 +62,26 @@ class _BreedListHomeState extends State<BreedListHome> {
             children: <Widget>[
               Padding(
                   padding: const EdgeInsets.only(top: 8, right: 8, bottom: 8),
-                  child: breed.image != null
-                      ? Image.network(
-                          '${breed.image.url}',
-                          width: 150,
-                          errorBuilder: (BuildContext context, Object exception,
-                              StackTrace stackTrace) {
-                            return Image.asset('Assets/imagePlaceholder.jpg',
-                                width: 150);
-                          },
-                        )
-                      : Image.asset('Assets/imagePlaceholder.jpg', width: 150)),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => BreedGallery()),
+                      );
+                    },
+                    child: breed.image != null
+                        ? Image.network(
+                            '${breed.image.url}',
+                            width: 150,
+                            errorBuilder: (BuildContext context,
+                                Object exception, StackTrace stackTrace) {
+                              return Image.asset('Assets/imagePlaceholder.jpg',
+                                  width: 150);
+                            },
+                          )
+                        : Image.asset('Assets/imagePlaceholder.jpg',
+                            width: 150),
+                  )),
               Flexible(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
