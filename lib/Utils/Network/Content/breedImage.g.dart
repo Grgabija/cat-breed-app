@@ -10,8 +10,8 @@ BreedImage _$BreedImageFromJson(Map<String, dynamic> json) {
   return BreedImage(
     json['url'] as String,
     json['id'] as String,
-    json['width'] as String,
-    json['height'] as String,
+    json['width'] as int,
+    json['height'] as int,
   );
 }
 

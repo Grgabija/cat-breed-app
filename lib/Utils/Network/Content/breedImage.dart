@@ -11,10 +11,10 @@ class BreedImage {
   final String id;
 
   @JsonKey(name: 'width')
-  final String width;
+  final int width;
 
   @JsonKey(name: 'height')
-  final String height;
+  final int height;
 
   BreedImage(this.url, this.id, this.width, this.height);
 

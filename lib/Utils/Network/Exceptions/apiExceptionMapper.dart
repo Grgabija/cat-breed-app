@@ -3,6 +3,7 @@ import 'package:cat_breed_app/Utils/Network/Exceptions/apiException.dart';
 
 abstract class ApiExceptionMapper {
   static String toErrorMessage(Object error) {
+    print(error);
     if (error is ApiException) {
       if (error is ConnectionException) {
         return Strings.connectionError;

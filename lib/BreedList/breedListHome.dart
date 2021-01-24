@@ -66,7 +66,7 @@ class _BreedListHomeState extends State<BreedListHome> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => BreedGallery()),
+                        MaterialPageRoute(builder: (context) => BreedGallery(breed.id, breed.name)),
                       );
                     },
                     child: breed.image != null
