@@ -56,32 +56,32 @@ class _BreedListHomeState extends State<BreedListHome> {
           ]);
 
   Widget _buildCardView(BreedResponse breed) => Card(
+          child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => BreedGallery(breed.id, breed.name)),
+          );
+        },
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Row(
             children: <Widget>[
               Padding(
-                  padding: const EdgeInsets.only(top: 8, right: 8, bottom: 8),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => BreedGallery(breed.id, breed.name)),
-                      );
-                    },
-                    child: breed.image != null
-                        ? Image.network(
-                            '${breed.image.url}',
-                            width: 150,
-                            errorBuilder: (BuildContext context,
-                                Object exception, StackTrace stackTrace) {
-                              return Image.asset('Assets/imagePlaceholder.jpg',
-                                  width: 150);
-                            },
-                          )
-                        : Image.asset('Assets/imagePlaceholder.jpg',
-                            width: 150),
-                  )),
+                padding: const EdgeInsets.only(top: 8, right: 8, bottom: 8),
+                child: breed.image != null
+                    ? Image.network(
+                        '${breed.image.url}',
+                        width: 150,
+                        errorBuilder: (BuildContext context, Object exception,
+                            StackTrace stackTrace) {
+                          return Image.asset('Assets/imagePlaceholder.jpg',
+                              width: 150);
+                        },
+                      )
+                    : Image.asset('Assets/imagePlaceholder.jpg', width: 150),
+              ),
               Flexible(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,5 +106,6 @@ class _BreedListHomeState extends State<BreedListHome> {
             ],
           ),
         ),
-      );
+      ),
+  );
 }
