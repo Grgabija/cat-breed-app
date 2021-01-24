@@ -11,7 +11,9 @@ class BreedGallery extends StatefulWidget {
   String breedId;
   String name;
 
-  BreedGallery(String breedId, String name) : this.breedId = breedId, this.name = name;
+  BreedGallery(String breedId, String name)
+      : this.breedId = breedId,
+        this.name = name;
 
   @override
   _BreedGalleryState createState() => _BreedGalleryState(breedId, name);
@@ -21,7 +23,9 @@ class _BreedGalleryState extends State<BreedGallery> {
   String breedId;
   String name;
 
-  _BreedGalleryState(String breedId, String name) : this.breedId = breedId, this.name = name;
+  _BreedGalleryState(String breedId, String name)
+      : this.breedId = breedId,
+        this.name = name;
 
   final Breeds _breeds = TheCatApi();
 
@@ -34,9 +38,10 @@ class _BreedGalleryState extends State<BreedGallery> {
       );
 
   Widget _buildGalleryView(BuildContext context) => Scaffold(
-        body: Container(
-          margin: EdgeInsets.all(12),
-          child: FutureBuilder<List<BreedImage>>(
+        body: Center(
+          child: Container(
+            margin: EdgeInsets.all(12),
+            child: FutureBuilder<List<BreedImage>>(
               future: _breeds.getBreedImage(breedId),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
@@ -52,19 +57,22 @@ class _BreedGalleryState extends State<BreedGallery> {
                 } else {
                   final breedImage = snapshot.data;
                   return StaggeredGridView.countBuilder(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 12,
-                      itemCount: breedImage.length,
-                      itemBuilder: (context, i) {
-                        final breedImages = breedImage[i];
-                        return _buildImageView(breedImages);
-                      },
-                      staggeredTileBuilder: (i) {
-                        return new StaggeredTile.count(1, i.isEven ? 1.2 : 1.8);
-                      });
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                    itemCount: breedImage.length,
+                    itemBuilder: (context, i) {
+                      final breedImages = breedImage[i];
+                      return _buildImageView(breedImages);
+                    },
+                    staggeredTileBuilder: (i) {
+                      return new StaggeredTile.count(1, i.isEven ? 1.2 : 1.8);
+                    },
+                  );
                 }
-              }),
+              },
+            ),
+          ),
         ),
       );
 

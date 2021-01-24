@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
 
 import 'package:cat_breed_app/Utils/Localization/strings.dart';
 import 'package:cat_breed_app/Utils/Network/Content/theCatApi.dart';
@@ -34,12 +33,16 @@ class _BreedListHomeState extends State<BreedListHome> {
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return Container(
-                          width: 50,
-                          height: 50,
-                          child: Center(child: CircularProgressIndicator()));
+                        width: 50,
+                        height: 50,
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
                     } else if (snapshot.hasError) {
                       return Text(
-                          ApiExceptionMapper.toErrorMessage(snapshot.error));
+                        ApiExceptionMapper.toErrorMessage(snapshot.error),
+                      );
                     } else {
                       final breeds = snapshot.data;
                       return ListView.builder(
@@ -56,56 +59,65 @@ class _BreedListHomeState extends State<BreedListHome> {
           ]);
 
   Widget _buildCardView(BreedResponse breed) => Card(
-          child: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => BreedGallery(breed.id, breed.name)),
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 8, right: 8, bottom: 8),
-                child: breed.image != null
-                    ? Image.network(
-                        '${breed.image.url}',
-                        width: 150,
-                        errorBuilder: (BuildContext context, Object exception,
-                            StackTrace stackTrace) {
-                          return Image.asset('Assets/imagePlaceholder.jpg',
-                              width: 150);
-                        },
-                      )
-                    : Image.asset('Assets/imagePlaceholder.jpg', width: 150),
+        child: InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => BreedGallery(breed.id, breed.name),
               ),
-              Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text('${breed.name}',
-                        style: Theme.of(context).textTheme.headline5),
-                    Padding(padding: const EdgeInsets.only(top: 4)),
-                    Text(
-                      '${breed.description}',
-                    ),
-                    Padding(padding: const EdgeInsets.only(top: 4)),
-                    Text(Strings.temperamentTitle,
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    Padding(padding: const EdgeInsets.only(top: 2)),
-                    Text(
-                      '${breed.temperament}',
-                    ),
-                  ],
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 8, right: 8, bottom: 8),
+                  child: breed.image != null
+                      ? Image.network(
+                          '${breed.image.url}',
+                          width: 150,
+                          errorBuilder: (BuildContext context, Object exception,
+                              StackTrace stackTrace) {
+                            return Image.asset('Assets/imagePlaceholder.jpg',
+                                width: 150);
+                          },
+                        )
+                      : Image.asset('Assets/imagePlaceholder.jpg', width: 150),
                 ),
-              ),
-            ],
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text('${breed.name}',
+                          style: Theme.of(context).textTheme.headline5),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                      ),
+                      Text(
+                        '${breed.description}',
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                      ),
+                      Text(
+                        Strings.temperamentTitle,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2),
+                      ),
+                      Text(
+                        '${breed.temperament}',
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-  );
+      );
 }
