@@ -6,6 +6,7 @@ import 'package:cat_breed_app/Utils/Network/Content/theCatApi.dart';
 import 'package:cat_breed_app/Utils/Network/Content/breedsRepository.dart';
 import 'package:cat_breed_app/Utils/Network/Content/breedImage.dart';
 import 'package:cat_breed_app/Utils/Network/Exceptions/apiExceptionMapper.dart';
+import 'package:cat_breed_app/BreedGallery/imagePreview.dart';
 
 class BreedGallery extends StatefulWidget {
   String breedId;
@@ -77,20 +78,30 @@ class _BreedGalleryState extends State<BreedGallery> {
       );
 
   Widget _buildImageView(BreedImage breedImages) => Container(
-        decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.all(Radius.circular(12))),
+      decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.all(Radius.circular(12))),
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ImageView(breedImages.url)),
+          );
+        },
         child: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(12)),
-          child: FadeInImage.memoryNetwork(
-            placeholder: kTransparentImage,
-            fit: BoxFit.cover,
-            image: breedImages != null ? '${breedImages.url}' : null,
-            imageErrorBuilder: (BuildContext context, Object exception,
-                StackTrace stackTrace) {
-              return Text('No image found 😢');
-            },
+          child: Hero(
+            tag: breedImages.url,
+            child: FadeInImage.memoryNetwork(
+              placeholder: kTransparentImage,
+              fit: BoxFit.cover,
+              image: breedImages != null ? '${breedImages.url}' : null,
+              imageErrorBuilder: (BuildContext context, Object exception,
+                  StackTrace stackTrace) {
+                return Text('No image found 😢');
+              },
+            ),
           ),
         ),
-      );
+      ));
 }
