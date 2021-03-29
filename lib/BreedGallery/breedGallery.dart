@@ -9,10 +9,10 @@ import 'package:cat_breed_app/Utils/Network/Exceptions/apiExceptionMapper.dart';
 import 'package:cat_breed_app/BreedGallery/imagePreview.dart';
 
 class BreedGallery extends StatefulWidget {
-  String breedId;
-  String name;
+  String? breedId;
+  String? name;
 
-  BreedGallery(String breedId, String name)
+  BreedGallery(String? breedId, String? name)
       : this.breedId = breedId,
         this.name = name;
 
@@ -21,10 +21,10 @@ class BreedGallery extends StatefulWidget {
 }
 
 class _BreedGalleryState extends State<BreedGallery> {
-  String breedId;
-  String name;
+  String? breedId;
+  String? name;
 
-  _BreedGalleryState(String breedId, String name)
+  _BreedGalleryState(String? breedId, String? name)
       : this.breedId = breedId,
         this.name = name;
 
@@ -33,7 +33,7 @@ class _BreedGalleryState extends State<BreedGallery> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text(name),
+          title: Text(name!),
         ),
         body: _buildGalleryView(context),
       );
@@ -56,7 +56,7 @@ class _BreedGalleryState extends State<BreedGallery> {
                     ApiExceptionMapper.toErrorMessage(snapshot.error),
                   );
                 } else {
-                  final breedImage = snapshot.data;
+                  final breedImage = snapshot.data!;
                   return StaggeredGridView.countBuilder(
                     crossAxisCount: 2,
                     crossAxisSpacing: 12,
@@ -91,13 +91,13 @@ class _BreedGalleryState extends State<BreedGallery> {
         child: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(12)),
           child: Hero(
-            tag: breedImages.url,
+            tag: breedImages.url!,
             child: FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,
               fit: BoxFit.cover,
-              image: breedImages != null ? '${breedImages.url}' : null,
+              image: breedImages.url!,
               imageErrorBuilder: (BuildContext context, Object exception,
-                  StackTrace stackTrace) {
+                  StackTrace? stackTrace) {
                 return Text('No image found 😢');
               },
             ),

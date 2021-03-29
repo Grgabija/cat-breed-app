@@ -17,11 +17,11 @@ class HttpClient {
   Future<dynamic> getRequest(String path, Map<String, String> headers) async {
     Response response;
     try {
-      response = await get(path);
+      response = await get(Uri.parse(path));
       final statusCode = response.statusCode;
       if (statusCode >= 200 && statusCode < 299) {
         if (response.body.isEmpty) {
-          return List<dynamic>();
+          return <dynamic>[];
         } else {
           return jsonDecode(response.body);
         }

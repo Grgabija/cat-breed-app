@@ -30,7 +30,7 @@ class TheCatApi extends Breeds {
         .toList();
   }
   @override
-  Future<List<BreedImage>> getBreedImage(String breedId) async {
+  Future<List<BreedImage>> getBreedImage(String? breedId) async {
     final List<dynamic> breedImageJson =
     await _httpClient.getRequest(_Urls.breedImages + "breed_id=${breedId}" + "&" + "limit=100", _Headers.requestHeaders);
     if (breedImageJson.isEmpty) {

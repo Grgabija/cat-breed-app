@@ -3,23 +3,23 @@ import 'package:photo_view/photo_view.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class ImageView extends StatefulWidget {
-  String breedImageUrl;
+  String? breedImageUrl;
 
-  ImageView(String breedImageUrl) : this.breedImageUrl = breedImageUrl;
+  ImageView(String? breedImageUrl) : this.breedImageUrl = breedImageUrl;
 
   @override
   _BreedImageState createState() => _BreedImageState(breedImageUrl);
 }
 
 class _BreedImageState extends State<ImageView> {
-  String breedImageUrl;
+  String? breedImageUrl;
 
-  _BreedImageState(String breedImageUrl) : this.breedImageUrl = breedImageUrl;
+  _BreedImageState(String? breedImageUrl) : this.breedImageUrl = breedImageUrl;
 
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag: breedImageUrl,
+      tag: breedImageUrl!,
       child: Container(
         child: PhotoView.customChild(
           enableRotation: true,
@@ -28,7 +28,7 @@ class _BreedImageState extends State<ImageView> {
           child: FadeInImage.memoryNetwork(
             placeholder: kTransparentImage,
             fit: BoxFit.contain,
-            image: breedImageUrl,
+            image: breedImageUrl!,
           ),
         ),
       ),

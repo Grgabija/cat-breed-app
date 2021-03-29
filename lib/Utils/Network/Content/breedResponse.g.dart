@@ -8,10 +8,10 @@ part of 'breedResponse.dart';
 
 BreedResponse _$BreedResponseFromJson(Map<String, dynamic> json) {
   return BreedResponse(
-    json['name'] as String,
-    json['id'] as String,
-    json['description'] as String,
-    json['temperament'] as String,
+    json['name'] as String?,
+    json['id'] as String?,
+    json['description'] as String?,
+    json['temperament'] as String?,
     json['image'] == null
         ? null
         : Image.fromJson(json['image'] as Map<String, dynamic>),

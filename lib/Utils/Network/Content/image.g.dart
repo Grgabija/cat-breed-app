@@ -8,10 +8,10 @@ part of 'image.dart';
 
 Image _$ImageFromJson(Map<String, dynamic> json) {
   return Image(
-    json['id'] as String,
-    json['height'] as int,
-    json['width'] as int,
-    json['url'] as String,
+    json['id'] as String?,
+    json['height'] as int?,
+    json['width'] as int?,
+    json['url'] as String?,
   );
 }
 

@@ -7,19 +7,19 @@ part 'breedResponse.g.dart';
 @JsonSerializable()
 class BreedResponse {
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   @JsonKey(name: 'id')
-  final String id;
+  final String? id;
 
   @JsonKey(name: 'description')
-  final String description;
+  final String? description;
 
   @JsonKey(name: 'temperament')
-  final String temperament;
+  final String? temperament;
 
   @JsonKey(name: 'image')
-  final Image image;
+  final Image? image;
 
   BreedResponse(this.name, this.id, this.description, this.temperament, this.image);
 

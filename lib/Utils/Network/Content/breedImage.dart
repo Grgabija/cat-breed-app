@@ -5,16 +5,16 @@ part 'breedImage.g.dart';
 @JsonSerializable()
 class BreedImage {
   @JsonKey(name: 'url')
-  final String url;
+  final String? url;
 
   @JsonKey(name: 'id')
-  final String id;
+  final String? id;
 
   @JsonKey(name: 'width')
-  final int width;
+  final int? width;
 
   @JsonKey(name: 'height')
-  final int height;
+  final int? height;
 
   BreedImage(this.url, this.id, this.width, this.height);
 

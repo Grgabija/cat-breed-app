@@ -44,7 +44,7 @@ class _BreedListHomeState extends State<BreedListHome> {
                         ApiExceptionMapper.toErrorMessage(snapshot.error),
                       );
                     } else {
-                      final breeds = snapshot.data;
+                      final breeds = snapshot.data!;
                       return ListView.builder(
                         padding: const EdgeInsets.all(16.0),
                         itemCount: breeds.length,
@@ -76,10 +76,10 @@ class _BreedListHomeState extends State<BreedListHome> {
                   padding: const EdgeInsets.only(top: 8, right: 8, bottom: 8),
                   child: breed.image != null
                       ? Image.network(
-                          '${breed.image.url}',
+                          '${breed.image!.url}',
                           width: 150,
                           errorBuilder: (BuildContext context, Object exception,
-                              StackTrace stackTrace) {
+                              StackTrace? stackTrace) {
                             return Image.asset('Assets/imagePlaceholder.jpg',
                                 width: 150);
                           },
